@@ -9,6 +9,9 @@ module.exports = app => {
   //Retrieve all Computadores
   router.get("/", computadores.findAll);
 
+  //Retrieve all Computadores that are on
+  router.get("/on", computadores.findAllOn);
+
   // Retrieve a single Computador with id
   router.get("/:id", computadores.findOne);
 

@@ -40,6 +40,19 @@ exports.findAll = (req, res) => {
   });
 };
 
+//Retrieve all Computadores from the database (with condition).
+exports.findAllOn = (req, res) => {
+
+  Computador.getAllOn((err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Ocorreu algum erro durante a busca dos computadores."
+      });
+    else res.send(data);
+  });
+};
+
 // Find a single Computador by Id
 exports.findOne = (req, res) => {
   Computador.findById(req.params.id, (err, data) => {

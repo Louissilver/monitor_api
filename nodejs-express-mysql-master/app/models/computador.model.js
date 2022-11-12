@@ -52,6 +52,21 @@ Computador.getAll = (result) => {
   });
 };
 
+Computador.getAllOn = (result) => {
+  let query = "SELECT DISTINCT h.macAddress, MAX(hora_final) as ultimaHoraLigado FROM horarios h JOIN computadores c ON c.macAddress = h.macAddress WHERE h.data = CURDATE();";
+
+  sql.query(query, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+
+    console.log("maquinas: ", res);
+    result(null, res);
+  });
+};
+
 Computador.updateById = (id, computador, result) => {
   sql.query(
     "UPDATE computadores SET title = ?, description = ?, published = ? WHERE id = ?",
